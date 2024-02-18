@@ -1,6 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 import random
+from scrapper import getWebsiteHttps
+from parseRosauers import rosauersParser
+from parseSafeway import safewayParser
+from parseWalmart import walmartParser
 
 def rPrice():
     return f"${random.randint(0, 20) + round(random.random(), 2)}"
@@ -18,7 +22,8 @@ def calculatePrice():
 
     for item in groceryList:
         if item.strip():  # Skip empty lines
-            row_values = (item, rPrice(), rPrice(), rPrice())
+            websiteData = getWebsiteHttps(item)
+            row_values = (item, walmartParser(websiteData[0])[0][1], rosauersParser(websiteData[1])[0][1], safewayParser(websiteData[2])[0][1])
             data.append(row_values)
 
             # Update column sums
