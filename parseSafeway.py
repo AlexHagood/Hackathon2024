@@ -3,7 +3,7 @@ import re
 
 from bs4 import BeautifulSoup
 
-def parseSafeway(keyWord):
+def safewayParser(keyWord):
     pricepattern = r'\$\d+\.\d{2}'
     
     safeway = getWebsiteHttps(keyWord)[2]

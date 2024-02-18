@@ -3,7 +3,7 @@ import re
 
 from bs4 import BeautifulSoup
 
-def walmartScraping(inputData):
+def walmartParser(inputData):
     pricepattern = r'\$\d+\.\d{2}'
 
     soup = BeautifulSoup(inputData, 'html.parser')
