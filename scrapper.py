@@ -4,8 +4,11 @@ import requests
 # from bs4 import BeautifulSoup
 import string
 from selenium import webdriver
-
-
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions
+import time
 #Fake Cookies To Avoid Bot Detection
 walmartHeader = {
   'authority': 'www.walmart.com',
@@ -77,21 +80,15 @@ def getWebsiteHttps(keyItem):
     httpOfSearch = []
 
     url = "https://www.walmart.com/search?q=" + keyItem
-    holderstring = requests.get(url, headers=walmartHeader).text
-    httpOfSearch.append(holderstring)
+    httpOfSearch.append(requests.get(url, headers=walmartHeader).text)
 
-    # url = "https://www.safeway.com/shop/search-results.html?q=" + keyItem
-    # if("Coca" in requests.get(url).text):
-    #     print("yes")
-    #     return
-    # print("no")https://shop.rosieapp.com/rosauers_43/search/milk
     url = "https://shop.rosieapp.com/v2/user/products?page%5Bnumber%5D=1&page%5Bsize%5D=30&filter%5Bfulltext%5D=" + keyItem
-    holderstring = requests.get(url, headers = roseaursHeader).text
-    httpOfSearch.append(holderstring)
+    httpOfSearch.append(requests.get(url, headers = roseaursHeader).text)
 
     url = "https://www.safeway.com/shop/search-results.html?q=" + keyItem
-    browser = webdriver.Firefox()
+    browser = webdriver.Chrome()
     browser.get(url)
-    browser.implicitly_wait(3000)
-    print(browser.execute_script("return document.body.innerHTML;"))
-getWebsiteHttps("milk")
+    time.sleep(5)
+    httpOfSearch.append(browser.page_source)
+    browser.quit()
+    return httpOfSearch
