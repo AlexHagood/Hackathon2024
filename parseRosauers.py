@@ -13,5 +13,5 @@ def rosauersParser(inputData):
     outputList = []
 
     for product in rosauers:
-        outputList.append((product['attributes']['name'],str(product['attributes']['unit_price'])))
+        outputList.append((product['attributes']['name'],"$"+str(product['attributes']['unit_price'])))
     return outputList

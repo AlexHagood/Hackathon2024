@@ -20,9 +20,13 @@ def calculatePrice():
     data = []
     column_sums = [0, 0, 0, 0]  # Initialize sums for each column
 
+    count = 0
+
     for item in groceryList:
         if item.strip():  # Skip empty lines
             websiteData = getWebsiteHttps(item)
+            print(count)
+            count = count + 1
             row_values = (item, walmartParser(websiteData[0])[0][1], rosauersParser(websiteData[1])[0][1], safewayParser(websiteData[2])[0][1])
             data.append(row_values)
 
@@ -47,7 +51,7 @@ window.title("Grocery Shopper")
 window.geometry("800x800")
 
 # Create a Treeview widget outside the function
-tree = ttk.Treeview(window, columns=("Item", "Roseaurs", "Safeway", "Walmart"), show="headings")
+tree = ttk.Treeview(window, columns=("Item", "Walmart", "Roseaurs", "Safeway"), show="headings")
 tree.heading("Item", text="Item")
 tree.heading("Roseaurs", text="Roseaurs")
 tree.heading("Safeway", text="Safeway")
