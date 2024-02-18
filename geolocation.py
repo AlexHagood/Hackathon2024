@@ -36,7 +36,7 @@ def findCompatibleGrocers(coords):
     returnlist = []
     for grocer in grocers:
         name = grocer['name']
-        if "Walmart" in name or "Safeway" in name or "Rosauers" in name:
+        if "Walmart" in name or "Safeway" in name or "Rosauers" in name or "Albertsons":
             print(f"{name} at {grocer['vicinity']}")
             returnlist.append((name, grocer['vicinity']))
 
