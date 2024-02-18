@@ -17,5 +17,6 @@ def parseSafeway(keyWord):
     outputList = []
     
     for product, price in zip(product_title_divs, product_price_divs):
-        outputList.append(price.text[11:16] + ":" + product.text)
-    return outputList
+        outputList.append((product.text, price.text[11:16]))
+    print(str(outputList))
+parseSafeway("Milk")

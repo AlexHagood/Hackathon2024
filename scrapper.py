@@ -88,7 +88,7 @@ def getWebsiteHttps(keyItem):
     url = "https://www.safeway.com/shop/search-results.html?q=" + keyItem
     browser = webdriver.Chrome()
     browser.get(url)
-    time.sleep(5)
+    time.sleep(2)
     httpOfSearch.append(browser.page_source)
     browser.quit()
     return httpOfSearch
