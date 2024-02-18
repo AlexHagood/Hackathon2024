@@ -3,12 +3,11 @@ import re
 
 from bs4 import BeautifulSoup
 
-def safewayParser(keyWord):
+def safewayParser(inputData):
     pricepattern = r'\$\d+\.\d{2}'
     
-    safeway = getWebsiteHttps(keyWord)[2]
     
-    soup = BeautifulSoup(safeway, 'html.parser')
+    soup = BeautifulSoup(inputData, 'html.parser')
     
     
     product_price_divs = soup.find_all('div', class_='product-price')
@@ -18,5 +17,4 @@ def safewayParser(keyWord):
     
     for product, price in zip(product_title_divs, product_price_divs):
         outputList.append((product.text, price.text[11:16]))
-    print(str(outputList))
-parseSafeway("Milk")
+    return(outputList)
